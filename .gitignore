@@ -1,1 +1,8 @@
-src/WashCarCrm.Api/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/src/WashCarCrm.Api/bin
+/src/WashCarCrm.Api/obj
+/src/WashCarCrm.Domain/bin
+/src/WashCarCrm.Domain/obj
+/src/WashCarCrm.Infrastructure/obj
+/src/WashCarCrm.Infrastructure/bin
+/src/WashCarCrm.Service/obj
+/src/WashCarCrm.Service/bin
