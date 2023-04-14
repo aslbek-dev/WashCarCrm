@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
-    <ProjectReference Include="..\WashCarCrm.Domain\WashCarCrm.Domain.csproj" />
+    <ProjectReference Include="..\WashCarCrm.Domain\WashCarCrm.Domain.csproj"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.16"/>
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
 </Project>

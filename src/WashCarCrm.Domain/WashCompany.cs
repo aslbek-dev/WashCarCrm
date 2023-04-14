@@ -11,11 +11,9 @@ namespace WashCarCrm.Domain
         public string Name { get; set; }
         public string Location { get; set; }
 
-        //this is foreign key
-        public int ImageId { get; set; }
-
         // ef relations
         public Image Image { get; set; }
+        public IQueryable<Washer> Washers { get; set; } 
         public IQueryable<Order> Orders { get; set; }
     }
 }
