@@ -12,6 +12,7 @@ namespace WashCarCrm.Domain
         public string ContentType { get; set; }
 
         // ef relations
+        public Washer Washer { get; set; }
         public WashCompany WashCompany { get; set; }
     }
 }

@@ -11,10 +11,13 @@ namespace WashCarCrm.Domain
         public string Name { get; set; }
         public string TelephoneNumber { get; set; }
         public int Stake { get; set; }
-        public byte[] Image { get; set; }
         public bool isActive { get; set; }
 
+        //this is foreign key
+        public int ImageId { get; set; }
+
         //ef relations
+        public Image Image { get; set; }
         public IQueryable<Order> Orders { get; set; }
     }
 }

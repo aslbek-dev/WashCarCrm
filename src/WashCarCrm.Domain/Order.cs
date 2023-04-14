@@ -13,13 +13,9 @@ namespace WashCarCrm.Domain
         public string CarNumber { get; set; }
         public string ClientName { get; set; }
         public string ClientNumber { get; set; }
-        
         public bool IsActive { get; set; }
         public bool IsCancelled { get; set; }
         public DateTimeOffset DateTime { get; set; }
-
-        //foreign keys
-        public int WashCompanyId { get; set; }
 
         // ef relations
         public WashCompany WashCompany { get; set; }
