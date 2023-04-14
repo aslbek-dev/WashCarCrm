@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WashCarCrm.Service\WashCarCrm.Service.csproj" />
+    <ProjectReference Include="..\WashCarCrm.Domain\WashCarCrm.Domain.csproj" />
+    <ProjectReference Include="..\WashCarCrm.Infrastructure\WashCarCrm.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
