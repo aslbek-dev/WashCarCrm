@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
 namespace WashCarCrm.Infrastructure.Context
@@ -10,7 +7,11 @@ namespace WashCarCrm.Infrastructure.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
+        { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

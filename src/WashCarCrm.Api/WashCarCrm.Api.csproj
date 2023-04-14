@@ -1,20 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.16"/>
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\WashCarCrm.Service\WashCarCrm.Service.csproj" />
-    <ProjectReference Include="..\WashCarCrm.Domain\WashCarCrm.Domain.csproj" />
-    <ProjectReference Include="..\WashCarCrm.Infrastructure\WashCarCrm.Infrastructure.csproj" />
+    <ProjectReference Include="..\WashCarCrm.Service\WashCarCrm.Service.csproj"/>
+    <ProjectReference Include="..\WashCarCrm.Domain\WashCarCrm.Domain.csproj"/>
+    <ProjectReference Include="..\WashCarCrm.Infrastructure\WashCarCrm.Infrastructure.csproj"/>
   </ItemGroup>
-
 </Project>
