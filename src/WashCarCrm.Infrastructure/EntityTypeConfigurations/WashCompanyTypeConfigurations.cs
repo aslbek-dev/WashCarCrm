@@ -16,7 +16,8 @@ namespace WashCarCrm.Infrastructure.EntityTypeConfigurations
 
             builder
                 .HasOne(WashCompany => WashCompany.Image)
-                .WithOne(Image => Image.WashCompany);
+                .WithOne(Image => Image.WashCompany)
+                .HasForeignKey<Image>(i => i.Id);
                 
             builder
                 .Property(w => w.Name)
