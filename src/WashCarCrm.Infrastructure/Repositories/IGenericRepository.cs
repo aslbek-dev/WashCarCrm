@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WashCarCrm.Infrastructure.Repositories
 {
-    public interface IGenericRepository<TEntity, TKey>
+    public interface IGenericRepository<TEntity, TKey> where TEntity : class
     {
         ValueTask<TEntity> InsertAsync(TEntity entity);
         IQueryable<TEntity> SelectAll();
