@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WashCarCrm.Domain", "src\Wa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WashCarCrm.Infrastructure", "src\WashCarCrm.Infrastructure\WashCarCrm.Infrastructure.csproj", "{59CE7782-F863-4385-8AA5-EC3A5C14C930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WashCarCrm.Service", "src\WashCarCrm.Service\WashCarCrm.Service.csproj", "{34D65DE6-CAD7-4BD4-8022-409757C3AEF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WashCarCrm.Application", "src\WashCarCrm.Service\WashCarCrm.Application.csproj", "{34D65DE6-CAD7-4BD4-8022-409757C3AEF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
