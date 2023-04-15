@@ -1,13 +1,25 @@
 using WashCarCrm.Infrastructure.Context;
+using WashCarCrm.Application.Foundations.WashCompanies;
+using WashCarCrm.Application.Foundations.Orders;
+using WashCarCrm.Application.Foundations.Services;
+using WashCarCrm.Application.Foundations.Users;
+using WashCarCrm.Application.Foundations.Washers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("SqlServerConnectionString");
 
 // Add services to the container.
+builder.Services.AddTransient<IWashCompanyService, WashCompanyService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IServiceService, ServiceService>();
+builder.Services.AddTransient<IWasherService, WasherService>();
+
+
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(option=>
