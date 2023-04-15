@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using WashCarCrm.Domain;
 using WashCarCrm.Infrastructure.Repositories;
 
-namespace WashCarCrm.Application.Foundations
+namespace WashCarCrm.Application.Foundations.Orders
 {
     public class OrderService : IOrderService
     {
@@ -34,9 +34,10 @@ namespace WashCarCrm.Application.Foundations
             return await this.OrderRepository.UpdateOrderAsync(Order);
         }
 
-        public async ValueTask<Order> RemoveOrderByIdAsync(Order Order)
+        public async ValueTask<Order> RemoveOrderByIdAsync(int id)
         {
-            return await this.OrderRepository.DeleteOrderAsync(Order);
+            Order maybeOrder = await this.OrderRepository.SelectOrderByIdAsync(id);
+            return await this.OrderRepository.DeleteOrderAsync(maybeOrder);
         }
     }
 }

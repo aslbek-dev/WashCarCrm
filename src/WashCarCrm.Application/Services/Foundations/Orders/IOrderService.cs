@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WashCarCrm.Domain;
 
-namespace WashCarCrm.Application.Foundations
+namespace WashCarCrm.Application.Foundations.Orders
 {
     public interface IOrderService
     {
@@ -11,6 +11,6 @@ namespace WashCarCrm.Application.Foundations
         IQueryable<Order> RetrieveAllOrders();
         ValueTask<Order> RetrieveOrderByIdAsync(int id);
         ValueTask<Order> ModifyOrderAsync(Order Order);
-        ValueTask<Order> RemoveOrderByIdAsync(Order Order);
+        ValueTask<Order> RemoveOrderByIdAsync(int id);
     }
 }
