@@ -34,9 +34,10 @@ namespace WashCarCrm.Application.Foundations.Washers
             return await this.WasherRepository.UpdateWasherAsync(Washer);
         }
 
-        public async ValueTask<Washer> RemoveWasherByIdAsync(Washer Washer)
+        public async ValueTask<Washer> RemoveWasherByIdAsync(int id)
         {
-            return await this.WasherRepository.DeleteWasherAsync(Washer);
+            Washer maybeWasher = await this.WasherRepository.SelectWasherByIdAsync(id);
+            return await this.WasherRepository.DeleteWasherAsync(maybeWasher);
         }
     }
 }

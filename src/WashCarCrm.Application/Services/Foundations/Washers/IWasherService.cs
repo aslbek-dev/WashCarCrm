@@ -11,6 +11,6 @@ namespace WashCarCrm.Application.Foundations.Washers
         IQueryable<Washer> RetrieveAllWashers();
         ValueTask<Washer> RetrieveWasherByIdAsync(int id);
         ValueTask<Washer> ModifyWasherAsync(Washer Washer);
-        ValueTask<Washer> RemoveWasherByIdAsync(Washer Washer);
+        ValueTask<Washer> RemoveWasherByIdAsync(int id);
     }
 }
