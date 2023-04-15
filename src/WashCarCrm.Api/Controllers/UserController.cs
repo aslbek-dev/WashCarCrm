@@ -42,12 +42,12 @@ namespace WashCarCrm.Api.Controllers
             }
         }
 
-        [HttpGet("{UserId}")]
-        public async ValueTask<ActionResult<User>> GetUserByIdAsync(int id)
+        [HttpGet("{userId}")]
+        public async ValueTask<ActionResult<User>> GetUserByIdAsync(int userId)
         {
             try
             {
-                return await this.userService.RetrieveUserByIdAsync(id);
+                return await this.userService.RetrieveUserByIdAsync(userId);
             }
             catch(Exception)
             {
@@ -69,12 +69,12 @@ namespace WashCarCrm.Api.Controllers
                 throw;
             }
         }
-        [HttpDelete("{UserId}")]
-        public async ValueTask<ActionResult<User>> DeleteUserByIdAsync(int id)
+        [HttpDelete("{userId}")]
+        public async ValueTask<ActionResult<User>> DeleteUserByIdAsync(int userId)
         {
             try
             {
-                User deletedUser = await this.userService.RemoveUserByIdAsync(id);
+                User deletedUser = await this.userService.RemoveUserByIdAsync(userId);
 
                 return Ok(deletedUser);
             }

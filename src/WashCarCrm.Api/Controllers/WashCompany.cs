@@ -43,12 +43,12 @@ namespace WashCarCrm.Api.Controllers
             }
         }
 
-        [HttpGet("{WashCompanyId}")]
-        public async ValueTask<ActionResult<WashCompany>> GetWashCompanyByIdAsync(int id)
+        [HttpGet("{washCompanyId}")]
+        public async ValueTask<ActionResult<WashCompany>> GetWashCompanyByIdAsync(int washCompanyId)
         {
             try
             {
-                return await this.WashCompanyService.RetrieveWashCompanyByIdAsync(id);
+                return await this.WashCompanyService.RetrieveWashCompanyByIdAsync(washCompanyId);
             }
             catch(Exception)
             {
@@ -71,13 +71,13 @@ namespace WashCarCrm.Api.Controllers
                 throw;
             }
         }
-        [HttpDelete("{WashCompanyId}")]
-        public async ValueTask<ActionResult<WashCompany>> DeleteWashCompanyByIdAsync(int id)
+        [HttpDelete("{washCompanyId}")]
+        public async ValueTask<ActionResult<WashCompany>> DeleteWashCompanyByIdAsync(int washCompanyId)
         {
             try
             {
                 WashCompany deletedWashCompany = 
-                    await this.WashCompanyService.RemoveWashCompanyByIdAsync(id);
+                    await this.WashCompanyService.RemoveWashCompanyByIdAsync(washCompanyId);
 
                 return Ok(deletedWashCompany);
             }

@@ -43,11 +43,11 @@ namespace WashCarCrm.Api.Controllers
         }
 
         [HttpGet("{orderId}")]
-        public async ValueTask<ActionResult<Order>> GetOrderByIdAsync(int id)
+        public async ValueTask<ActionResult<Order>> GetOrderByIdAsync(int orderId)
         {
             try
             {
-                return await this.orderService.RetrieveOrderByIdAsync(id);
+                return await this.orderService.RetrieveOrderByIdAsync(orderId);
             }
             catch(Exception)
             {
@@ -70,11 +70,11 @@ namespace WashCarCrm.Api.Controllers
             }
         }
         [HttpDelete("{orderId}")]
-        public async ValueTask<ActionResult<Order>> DeleteOrderByIdAsync(int id)
+        public async ValueTask<ActionResult<Order>> DeleteOrderByIdAsync(int orderId)
         {
             try
             {
-                Order deletedOrder = await this.orderService.RemoveOrderByIdAsync(id);
+                Order deletedOrder = await this.orderService.RemoveOrderByIdAsync(orderId);
 
                 return Ok(deletedOrder);
             }
