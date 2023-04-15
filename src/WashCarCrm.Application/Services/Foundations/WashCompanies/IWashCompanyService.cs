@@ -12,6 +12,6 @@ namespace WashCarCrm.Application.Foundations.WashCompanies
         IQueryable<WashCompany> RetrieveAllWashCompanies();
         ValueTask<WashCompany> RetrieveWashCompanyByIdAsync(int id);
         ValueTask<WashCompany> ModifyWashCompanyAsync(WashCompany WashCompany);
-        ValueTask<WashCompany> RemoveWashCompanyByIdAsync(WashCompany WashCompany);
+        ValueTask<WashCompany> RemoveWashCompanyByIdAsync(int id);
     }
 }

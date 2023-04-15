@@ -34,9 +34,12 @@ namespace WashCarCrm.Application.Foundations.WashCompanies
             return await this.washCompanyRepository.UpdateWashCompanyAsync(washCompany);
         }
 
-        public async ValueTask<WashCompany> RemoveWashCompanyByIdAsync(WashCompany washCompany)
+        public async ValueTask<WashCompany> RemoveWashCompanyByIdAsync(int id)
         {
-            return await this.washCompanyRepository.DeleteWashCompanyAsync(washCompany);
+            WashCompany maybeWashCompany = 
+                await this.washCompanyRepository.SelectWashCompanyByIdAsync(id);
+                
+            return await this.washCompanyRepository.DeleteWashCompanyAsync(maybeWashCompany);
         }
 
     }
