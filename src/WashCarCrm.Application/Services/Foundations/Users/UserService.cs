@@ -34,9 +34,10 @@ namespace WashCarCrm.Application.Foundations.Users
             return await this.UserRepository.UpdateUserAsync(User);
         }
 
-        public async ValueTask<User> RemoveUserByIdAsync(User User)
+        public async ValueTask<User> RemoveUserByIdAsync(int id)
         {
-            return await this.UserRepository.DeleteUserAsync(User);
+            User maybeUser = await this.UserRepository.SelectUserByIdAsync(id);
+            return await this.UserRepository.DeleteUserAsync(maybeUser);
         }
     }
 }

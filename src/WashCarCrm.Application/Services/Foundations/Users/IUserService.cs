@@ -11,6 +11,6 @@ namespace WashCarCrm.Application.Foundations.Users
         IQueryable<User> RetrieveAllUsers();
         ValueTask<User> RetrieveUserByIdAsync(int id);
         ValueTask<User> ModifyUserAsync(User User);
-        ValueTask<User> RemoveUserByIdAsync(User User);
+        ValueTask<User> RemoveUserByIdAsync(int id);
     }
 }
