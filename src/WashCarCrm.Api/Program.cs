@@ -10,20 +10,6 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("SqlServerConnectionString");
 
-// Add services to the container.
-builder.Services.AddTransient<IWashCompanyService, WashCompanyService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IOrderService, OrderService>();
-builder.Services.AddTransient<IServiceService, ServiceService>();
-builder.Services.AddTransient<IWasherService, WasherService>();
-
-builder.Services.AddTransient<IWashCompanyRepository, WashCompanyRepository>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient<IWasherRepository, WasherRepository>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddTransient<IServiceService, ServiceService>();
-
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,7 +18,6 @@ option.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -46,3 +31,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+builder.Services.AddTransient<IWashCompanyService, WashCompanyService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IServiceService, ServiceService>();
+builder.Services.AddTransient<IWasherService, WasherService>();
+
+builder.Services.AddTransient<IWashCompanyRepository, WashCompanyRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IWasherRepository, WasherRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IServiceService, ServiceService>();
