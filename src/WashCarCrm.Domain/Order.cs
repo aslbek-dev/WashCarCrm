@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WashCarCrm.Domain
@@ -15,11 +16,18 @@ namespace WashCarCrm.Domain
         public string ClientNumber { get; set; }
         public bool IsActive { get; set; }
         public bool IsCancelled { get; set; }
+        public int WashCompanyId { get; set; }
+        public int ServiceId { get; set; }
+        public int WasherId { get; set; }
+
         public DateTimeOffset DateTime { get; set; }
 
         // ef relations
+        [JsonIgnore]
         public WashCompany WashCompany { get; set; }
-        public IQueryable<Washer> Washers { get; set; }
-        public IQueryable<Service> Services { get; set; }
+        [JsonIgnore]
+        public Washer Washer { get; set; }
+        [JsonIgnore]
+        public Service Service { get; set; }
     }
 }

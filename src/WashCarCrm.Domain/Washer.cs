@@ -9,11 +9,15 @@ namespace WashCarCrm.Domain
         public string TelephoneNumber { get; set; }
         public int Stake { get; set; }
         public bool isActive { get; set; }
+        public int WashCompanyId { get; set; }
+        [JsonIgnore]
+        public int ImageId { get; set; }
 
         //ef relations
         public Image Image { get; set; }
-        public WashCompany washCompany { get; set; }
         [JsonIgnore]
-        public IQueryable<Order> Orders { get; set; }
+        public WashCompany WashCompany { get; set; }
+        [JsonIgnore]
+        public List<Order> Orders { get; set; }
     }
 }

@@ -13,15 +13,14 @@ namespace WashCarCrm.Infrastructure.EntityTypeConfigurations
             builder
                 .Property(WashCompany => WashCompany.Id)
                 .ValueGeneratedOnAdd();
-
-            builder
-                .HasOne(WashCompany => WashCompany.Image)
-                .WithOne(Image => Image.WashCompany)
-                .HasForeignKey<Image>(i => i.Id);
                 
             builder
                 .Property(w => w.Name)
                 .HasMaxLength(120);
+            
+            builder
+                .HasOne(wc => wc.Image)
+                .WithOne(i => i.WashCompany);
         }
     }
 }

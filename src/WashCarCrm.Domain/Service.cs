@@ -11,6 +11,6 @@ namespace WashCarCrm.Domain
 
         //ef relation
         [JsonIgnore]
-        public IQueryable<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

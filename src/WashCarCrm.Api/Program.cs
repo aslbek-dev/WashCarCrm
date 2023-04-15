@@ -16,6 +16,22 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(option=>
 option.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<IWashCompanyRepository, WashCompanyRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IWasherRepository, WasherRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
+
+
+
+builder.Services.AddScoped<IWashCompanyService, WashCompanyService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IWasherService, WasherService>();
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -32,14 +48,14 @@ app.MapControllers();
 
 app.Run();
 
-builder.Services.AddTransient<IWashCompanyService, WashCompanyService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IOrderService, OrderService>();
-builder.Services.AddTransient<IServiceService, ServiceService>();
-builder.Services.AddTransient<IWasherService, WasherService>();
+// builder.Services.AddScoped<IWashCompanyService, WashCompanyService>();
+// builder.Services.AddScoped<IUserService, UserService>();
+// builder.Services.AddScoped<IOrderService, OrderService>();
+// builder.Services.AddScoped<IServiceService, ServiceService>();
+// builder.Services.AddScoped<IWasherService, WasherService>();
 
-builder.Services.AddTransient<IWashCompanyRepository, WashCompanyRepository>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient<IWasherRepository, WasherRepository>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddTransient<IServiceService, ServiceService>();
+// builder.Services.AddScoped<IWashCompanyRepository, WashCompanyRepository>();
+// builder.Services.AddScoped<IUserRepository, UserRepository>();
+// builder.Services.AddScoped<IWasherRepository, WasherRepository>();
+// builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+// builder.Services.AddScoped<IServiceService, ServiceService>();

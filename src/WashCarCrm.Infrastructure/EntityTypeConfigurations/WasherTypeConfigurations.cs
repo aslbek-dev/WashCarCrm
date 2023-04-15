@@ -15,13 +15,10 @@ namespace WashCarCrm.Infrastructure.EntityTypeConfigurations
                 .ValueGeneratedOnAdd();
             
             builder
-                .HasOne(Washer => Washer.Image)
-                .WithOne(Image => Image.Washer)
-                .HasForeignKey<Image>(i => i.Id);
-            
-            builder
-                .HasOne(washer => washer.washCompany)
-                .WithMany(WashCompany => WashCompany.Washers);
+                .HasOne(w => w.WashCompany)
+                .WithMany(wc => wc.Washers)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);
         }
     }
 }

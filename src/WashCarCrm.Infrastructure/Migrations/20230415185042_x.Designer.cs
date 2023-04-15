@@ -12,8 +12,8 @@ using WashCarCrm.Infrastructure.Context;
 namespace WashCarCrm.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230414180657_initial")]
-    partial class initial
+    [Migration("20230415185042_x")]
+    partial class x
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,41 +24,13 @@ namespace WashCarCrm.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("OrderService", b =>
-                {
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServicesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersId", "ServicesId");
-
-                    b.HasIndex("ServicesId");
-
-                    b.ToTable("OrderService");
-                });
-
-            modelBuilder.Entity("OrderWasher", b =>
-                {
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WashersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersId", "WashersId");
-
-                    b.HasIndex("WashersId");
-
-                    b.ToTable("OrderWasher");
-                });
-
             modelBuilder.Entity("WashCarCrm.Domain.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ContentType")
                         .HasColumnType("nvarchar(max)");
@@ -103,12 +75,22 @@ namespace WashCarCrm.Infrastructure.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("WashCompanyId")
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WashCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WasherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ServiceId");
+
                     b.HasIndex("WashCompanyId");
+
+                    b.HasIndex("WasherId");
 
                     b.ToTable("Orders", (string)null);
                 });
@@ -174,6 +156,9 @@ namespace WashCarCrm.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
@@ -182,6 +167,9 @@ namespace WashCarCrm.Infrastructure.Migrations
                         .HasColumnType("nvarchar(120)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ImageId")
+                        .IsUnique();
 
                     b.ToTable("WashCompanies", (string)null);
                 });
@@ -194,6 +182,9 @@ namespace WashCarCrm.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -203,90 +194,92 @@ namespace WashCarCrm.Infrastructure.Migrations
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("WashCompanyId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("washCompanyId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("washCompanyId");
+                    b.HasIndex("ImageId")
+                        .IsUnique();
+
+                    b.HasIndex("WashCompanyId");
 
                     b.ToTable("Washers", (string)null);
                 });
 
-            modelBuilder.Entity("OrderService", b =>
+            modelBuilder.Entity("WashCarCrm.Domain.Order", b =>
                 {
-                    b.HasOne("WashCarCrm.Domain.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
+                    b.HasOne("WashCarCrm.Domain.Service", "Service")
+                        .WithMany("Orders")
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WashCarCrm.Domain.Service", null)
-                        .WithMany()
-                        .HasForeignKey("ServicesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OrderWasher", b =>
-                {
-                    b.HasOne("WashCarCrm.Domain.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WashCarCrm.Domain.Washer", null)
-                        .WithMany()
-                        .HasForeignKey("WashersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WashCarCrm.Domain.Image", b =>
-                {
                     b.HasOne("WashCarCrm.Domain.WashCompany", "WashCompany")
-                        .WithOne("Image")
-                        .HasForeignKey("WashCarCrm.Domain.Image", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("Orders")
+                        .HasForeignKey("WashCompanyId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("WashCarCrm.Domain.Washer", "Washer")
-                        .WithOne("Image")
-                        .HasForeignKey("WashCarCrm.Domain.Image", "Id")
+                        .WithMany("Orders")
+                        .HasForeignKey("WasherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Service");
 
                     b.Navigation("WashCompany");
 
                     b.Navigation("Washer");
                 });
 
-            modelBuilder.Entity("WashCarCrm.Domain.Order", b =>
+            modelBuilder.Entity("WashCarCrm.Domain.WashCompany", b =>
                 {
-                    b.HasOne("WashCarCrm.Domain.WashCompany", "WashCompany")
-                        .WithMany("Orders")
-                        .HasForeignKey("WashCompanyId");
+                    b.HasOne("WashCarCrm.Domain.Image", "Image")
+                        .WithOne("WashCompany")
+                        .HasForeignKey("WashCarCrm.Domain.WashCompany", "ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("WashCompany");
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("WashCarCrm.Domain.Washer", b =>
                 {
-                    b.HasOne("WashCarCrm.Domain.WashCompany", "washCompany")
-                        .WithMany("Washers")
-                        .HasForeignKey("washCompanyId");
+                    b.HasOne("WashCarCrm.Domain.Image", "Image")
+                        .WithOne("Washer")
+                        .HasForeignKey("WashCarCrm.Domain.Washer", "ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("washCompany");
+                    b.HasOne("WashCarCrm.Domain.WashCompany", "WashCompany")
+                        .WithMany("Washers")
+                        .HasForeignKey("WashCompanyId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Image");
+
+                    b.Navigation("WashCompany");
+                });
+
+            modelBuilder.Entity("WashCarCrm.Domain.Image", b =>
+                {
+                    b.Navigation("WashCompany");
+
+                    b.Navigation("Washer");
+                });
+
+            modelBuilder.Entity("WashCarCrm.Domain.Service", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("WashCarCrm.Domain.WashCompany", b =>
                 {
-                    b.Navigation("Image");
-
                     b.Navigation("Orders");
 
                     b.Navigation("Washers");
@@ -294,7 +287,7 @@ namespace WashCarCrm.Infrastructure.Migrations
 
             modelBuilder.Entity("WashCarCrm.Domain.Washer", b =>
                 {
-                    b.Navigation("Image");
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

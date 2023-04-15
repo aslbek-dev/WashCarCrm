@@ -7,12 +7,14 @@ namespace WashCarCrm.Domain
         public int Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
+        [JsonIgnore]
+        public int ImageId { get; set;}
 
         // ef relations
         public Image Image { get; set; }
         [JsonIgnore]
-        public IQueryable<Washer> Washers { get; set; } 
+        public List<Washer> Washers { get; set; } 
         [JsonIgnore]
-        public IQueryable<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

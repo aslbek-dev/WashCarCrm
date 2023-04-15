@@ -15,16 +15,21 @@ namespace WashCarCrm.Infrastructure.EntityTypeConfigurations
                 .ValueGeneratedOnAdd();
             
             builder
-                .HasMany(Order => Order.Washers)
-                .WithMany(Washer => Washer.Orders);
+                .HasOne(Order => Order.Washer)
+                .WithMany(Washer => Washer.Orders)
+                .HasForeignKey(Order => Order.WasherId);
+                
             
             builder
                 .HasOne(order => order.WashCompany)
-                .WithMany(WashCompany => WashCompany.Orders);
+                .WithMany(WashCompany => WashCompany.Orders)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasForeignKey(Order => Order.WashCompanyId);
             
             builder
-                .HasMany(order => order.Services)
-                .WithMany(service => service.Orders);
+                .HasOne(order => order.Service)
+                .WithMany(service => service.Orders)
+                .HasForeignKey(order => order.ServiceId);
         }
     }
 }
