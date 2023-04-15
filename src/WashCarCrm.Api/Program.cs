@@ -4,6 +4,7 @@ using WashCarCrm.Application.Foundations.Orders;
 using WashCarCrm.Application.Foundations.Services;
 using WashCarCrm.Application.Foundations.Users;
 using WashCarCrm.Application.Foundations.Washers;
+using WashCarCrm.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,11 @@ builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
 builder.Services.AddTransient<IWasherService, WasherService>();
 
-
+builder.Services.AddTransient<IWashCompanyRepository, WashCompanyRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IWasherRepository, WasherRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IServiceService, ServiceService>();
 
 
 builder.Services.AddControllers();
