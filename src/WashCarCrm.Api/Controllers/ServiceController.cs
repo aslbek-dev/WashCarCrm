@@ -9,17 +9,17 @@ namespace WashCarCrm.Api.Controllers
     [Route("api/[controller]")]
     public class ServiceController : RESTFulController
     {
-        private readonly IServiceService ServiceService;
-        public ServiceController(IServiceService orederService)
+        private readonly IServiceService serviceService;
+        public ServiceController(IServiceService serviceService)
         {
-            this.ServiceService = ServiceService;
+            this.serviceService = serviceService;
         }
         [HttpPost]
         public async ValueTask<ActionResult<Service>> PostServiceAsync(Service Service)
         {
             try
             {
-                return await this.ServiceService.AddServiceAsync(Service);
+                return await this.serviceService.AddServiceAsync(Service);
             }
             catch(Exception)
             {
@@ -32,7 +32,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                IQueryable<Service> allServices = this.ServiceService.RetrieveAllServices();
+                IQueryable<Service> allServices = this.serviceService.RetrieveAllServices();
 
                 return Ok(allServices);
             }
@@ -47,7 +47,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                return await this.ServiceService.RetrieveServiceByIdAsync(id);
+                return await this.serviceService.RetrieveServiceByIdAsync(id);
             }
             catch(Exception)
             {
@@ -60,7 +60,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                Service modifiedService = await this.ServiceService.ModifyServiceAsync(Service);
+                Service modifiedService = await this.serviceService.ModifyServiceAsync(Service);
 
                 return Ok(modifiedService);
             }
@@ -74,7 +74,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                Service deletedService = await this.ServiceService.RemoveServiceByIdAsync(id);
+                Service deletedService = await this.serviceService.RemoveServiceByIdAsync(id);
 
                 return Ok(deletedService);
             }

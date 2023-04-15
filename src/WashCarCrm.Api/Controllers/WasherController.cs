@@ -10,9 +10,9 @@ namespace WashCarCrm.Api.Controllers
     public class WasherController : RESTFulController
     {
         private readonly IWasherService WasherService;
-        public WasherController(IWasherService orederService)
+        public WasherController(IWasherService washerService)
         {
-            this.WasherService = WasherService;
+            this.WasherService = washerService;
         }
         [HttpPost]
         public async ValueTask<ActionResult<Washer>> PostWasherAsync(Washer Washer)

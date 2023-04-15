@@ -9,17 +9,17 @@ namespace WashCarCrm.Api.Controllers
     [Route("api/[controller]")]
     public class UserController : RESTFulController
     {
-        private readonly IUserService UserService;
-        public UserController(IUserService orederService)
+        private readonly IUserService userService;
+        public UserController(IUserService userService)
         {
-            this.UserService = UserService;
+            this.userService = userService;
         }
         [HttpPost]
         public async ValueTask<ActionResult<User>> PostUserAsync(User User)
         {
             try
             {
-                return await this.UserService.AddUserAsync(User);
+                return await this.userService.AddUserAsync(User);
             }
             catch(Exception)
             {
@@ -32,7 +32,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                IQueryable<User> allUsers = this.UserService.RetrieveAllUsers();
+                IQueryable<User> allUsers = this.userService.RetrieveAllUsers();
 
                 return Ok(allUsers);
             }
@@ -47,7 +47,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                return await this.UserService.RetrieveUserByIdAsync(id);
+                return await this.userService.RetrieveUserByIdAsync(id);
             }
             catch(Exception)
             {
@@ -60,7 +60,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                User modifiedUser = await this.UserService.ModifyUserAsync(User);
+                User modifiedUser = await this.userService.ModifyUserAsync(User);
 
                 return Ok(modifiedUser);
             }
@@ -74,7 +74,7 @@ namespace WashCarCrm.Api.Controllers
         {
             try
             {
-                User deletedUser = await this.UserService.RemoveUserByIdAsync(id);
+                User deletedUser = await this.userService.RemoveUserByIdAsync(id);
 
                 return Ok(deletedUser);
             }

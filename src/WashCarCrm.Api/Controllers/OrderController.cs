@@ -10,7 +10,7 @@ namespace WashCarCrm.Api.Controllers
     public class OrderController : RESTFulController
     {
         private readonly IOrderService orderService;
-        public OrderController(IOrderService orederService)
+        public OrderController(IOrderService orderService)
         {
             this.orderService = orderService;
         }
