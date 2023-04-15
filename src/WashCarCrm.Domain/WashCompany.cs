@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace WashCarCrm.Domain
 {
@@ -13,7 +10,9 @@ namespace WashCarCrm.Domain
 
         // ef relations
         public Image Image { get; set; }
+        [JsonIgnore]
         public IQueryable<Washer> Washers { get; set; } 
+        [JsonIgnore]
         public IQueryable<Order> Orders { get; set; }
     }
 }

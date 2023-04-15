@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace WashCarCrm.Domain
 {
     public class Washer
@@ -11,6 +13,7 @@ namespace WashCarCrm.Domain
         //ef relations
         public Image Image { get; set; }
         public WashCompany washCompany { get; set; }
+        [JsonIgnore]
         public IQueryable<Order> Orders { get; set; }
     }
 }
