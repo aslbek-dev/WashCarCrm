@@ -14,19 +14,6 @@ namespace WashCarCrm.Api.Controllers
         {
             this.userService = userService;
         }
-        [HttpPost]
-        public async ValueTask<ActionResult<User>> PostUserAsync(User User)
-        {
-            try
-            {
-                return await this.userService.AddUserAsync(User);
-            }
-            catch(Exception)
-            {
-                throw;
-            }
-        }
-
         [HttpGet]
         public ActionResult<IQueryable<User>> GetAllUsers()
         {
@@ -55,20 +42,6 @@ namespace WashCarCrm.Api.Controllers
             }
         }
         
-        [HttpPut]
-        public async ValueTask<ActionResult<User>> PutUserAsync(User User)
-        {
-            try
-            {
-                User modifiedUser = await this.userService.ModifyUserAsync(User);
-
-                return Ok(modifiedUser);
-            }
-            catch(Exception)
-            {
-                throw;
-            }
-        }
         [HttpDelete("{userId}")]
         public async ValueTask<ActionResult<User>> DeleteUserByIdAsync(int userId)
         {
