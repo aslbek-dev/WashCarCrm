@@ -69,20 +69,6 @@ namespace WashCarCrm.Api.Controllers
                 throw;
             }
         }
-        [HttpDelete("{washerId}")]
-        public async ValueTask<ActionResult<Washer>> DeleteWasherByIdAsync(int washerId)
-        {
-            try
-            {
-                Washer deletedWasher = await this.WasherService.RemoveWasherByIdAsync(washerId);
-
-                return Ok(deletedWasher);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
     }
 }

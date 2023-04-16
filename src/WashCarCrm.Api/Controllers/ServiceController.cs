@@ -69,20 +69,5 @@ namespace WashCarCrm.Api.Controllers
                 throw;
             }
         }
-        [HttpDelete("{serviceId}")]
-        public async ValueTask<ActionResult<Service>> DeleteServiceByIdAsync(int serviceId)
-        {
-            try
-            {
-                Service deletedService = await this.serviceService.RemoveServiceByIdAsync(serviceId);
-
-                return Ok(deletedService);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
     }
 }

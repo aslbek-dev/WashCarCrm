@@ -19,8 +19,15 @@ string connectionString = builder.Configuration.GetConnectionString("SqlServerCo
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<AppDbContext>(option=>
-option.UseSqlServer(connectionString));
+option.UseInMemoryDatabase("AutoDb"));
+
+// Sql serverni ishlatmoqchi bo'lsangiz pastdagi 2 ta qatorni commentdan chiqaring
+// va yuqoridagi 2 ta qatorni commentga oling
+
+// builder.Services.AddDbContext<AppDbContext>(option =>
+// option.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IWashCompanyRepository, WashCompanyRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

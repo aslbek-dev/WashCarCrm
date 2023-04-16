@@ -79,21 +79,6 @@ namespace WashCarCrm.Api.Controllers
                 throw;
             }
         }
-        [HttpDelete("{orderId}")]
-        public async ValueTask<ActionResult<Order>> DeleteOrderByIdAsync(int orderId)
-        {
-            try
-            {
-                Order deletedOrder = await this.orderService.RemoveOrderByIdAsync(orderId);
-
-                return Ok(deletedOrder);
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
-        }
 
     }
 }
