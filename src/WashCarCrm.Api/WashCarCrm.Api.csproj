@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16"/>
     <PackageReference Include="RESTFulSense" Version="2.13.0"/>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WashCarCrm.Application\WashCarCrm.Application.csproj"/>
