@@ -14,10 +14,10 @@ namespace WashCarCrm.Application.Foundations.Washers
         {
             this.WasherRepository = WasherRepository;
         }
-        public async ValueTask<Washer> AddWasherAsync(Washer Washer)
+        public async ValueTask<Washer> AddWasherAsync(int washerCompanyId, Washer Washer)
         {
-            
-           return await this.WasherRepository.InsertWasherAsync(Washer);
+            Washer.WashCompanyId = washerCompanyId;
+            return await this.WasherRepository.InsertWasherAsync(Washer);
         }
         public IQueryable<Washer> RetrieveAllWashers()
         {
@@ -29,8 +29,9 @@ namespace WashCarCrm.Application.Foundations.Washers
             return await this.WasherRepository.SelectWasherByIdAsync(id);
         }
 
-        public async ValueTask<Washer> ModifyWasherAsync(Washer Washer)
+        public async ValueTask<Washer> ModifyWasherAsync(int washCompanyId, Washer Washer)
         {
+            Washer.WashCompanyId = washCompanyId;
             return await this.WasherRepository.UpdateWasherAsync(Washer);
         }
 

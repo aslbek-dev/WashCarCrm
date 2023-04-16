@@ -16,6 +16,7 @@ namespace WashCarCrm.Domain
         public string ClientNumber { get; set; }
         public bool IsActive { get; set; }
         public bool IsCancelled { get; set; }
+        [JsonIgnore]
         public int WashCompanyId { get; set; }
         public int ServiceId { get; set; }
         public int WasherId { get; set; }

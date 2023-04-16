@@ -9,6 +9,7 @@ namespace WashCarCrm.Domain
         public string TelephoneNumber { get; set; }
         public int Stake { get; set; }
         public bool isActive { get; set; }
+        [JsonIgnore]
         public int WashCompanyId { get; set; }
         [JsonIgnore]
         public int ImageId { get; set; }

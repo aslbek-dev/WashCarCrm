@@ -7,10 +7,10 @@ namespace WashCarCrm.Application.Foundations.Washers
 {
     public interface IWasherService
     {
-        ValueTask<Washer> AddWasherAsync(Washer Washer);
+        ValueTask<Washer> AddWasherAsync(int washCompanyId, Washer Washer);
         IQueryable<Washer> RetrieveAllWashers();
         ValueTask<Washer> RetrieveWasherByIdAsync(int id);
-        ValueTask<Washer> ModifyWasherAsync(Washer Washer);
+        ValueTask<Washer> ModifyWasherAsync(int washCompanyId, Washer Washer);
         ValueTask<Washer> RemoveWasherByIdAsync(int id);
     }
 }

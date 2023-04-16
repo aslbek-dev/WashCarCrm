@@ -6,7 +6,7 @@ using WashCarCrm.Domain;
 namespace WashCarCrm.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class OrderController : RESTFulController
     {
         private readonly IOrderService orderService;
@@ -14,20 +14,30 @@ namespace WashCarCrm.Api.Controllers
         {
             this.orderService = orderService;
         }
-        [HttpPost]
-        public async ValueTask<ActionResult<Order>> PostOrderAsync(Order order)
+        [HttpPost("{washCompanyId}/insertOrder")]
+        public async ValueTask<ActionResult<Order>> PostOrderAsync(int washCompanyId, Order order)
         {
             try
             {
-                return await this.orderService.AddOrderAsync(order);
+
+                return await this.orderService.AddOrderAsync(washCompanyId,order);
             }
             catch(Exception)
             {
                 throw;
             }
         }
+        [HttpGet("{washCompanyId}/ordersByIsActive")]
+        public ActionResult<IQueryable<Order>> GetisActiveOrder(
+            [FromQuery] bool isActive,
+            [FromQuery] DateTimeOffset dateFrom,
+            [FromQuery] DateTimeOffset dateTo,
+            [FromQuery] int page, int washCompanyId)
+        {
+            return Ok(this.orderService.GetisActiveOrder(washCompanyId, page, isActive, dateFrom, dateTo));
+        }
 
-        [HttpGet]
+        [HttpGet("allOrder")]
         public ActionResult<IQueryable<Order>> GetAllOrders()
         {
             try
@@ -55,12 +65,12 @@ namespace WashCarCrm.Api.Controllers
             }
         }
         
-        [HttpPut]
-        public async ValueTask<ActionResult<Order>> PutOrderAsync(Order order)
+        [HttpPut("{washCompanyId}/updateOrder")]
+        public async ValueTask<ActionResult<Order>> PutOrderAsync(int washCompanyId, Order order)
         {
             try
             {
-                Order modifiedOrder = await this.orderService.ModifyOrderAsync(order);
+                Order modifiedOrder = await this.orderService.ModifyOrderAsync(washCompanyId, order);
 
                 return Ok(modifiedOrder);
             }

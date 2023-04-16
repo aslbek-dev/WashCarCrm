@@ -14,9 +14,9 @@ namespace WashCarCrm.Application.Foundations.Services
         {
             this.ServiceRepository = serviceRepository;
         }
-        public async ValueTask<Service> AddServiceAsync(Service service)
+        public async ValueTask<Service> AddServiceAsync(int washCompanyId, Service service)
         {
-            
+            service.washCompanyId = washCompanyId;
            return await this.ServiceRepository.InsertServiceAsync(service);
         }
         public IQueryable<Service> RetrieveAllServices()
@@ -29,8 +29,9 @@ namespace WashCarCrm.Application.Foundations.Services
             return await this.ServiceRepository.SelectServiceByIdAsync(id);
         }
 
-        public async ValueTask<Service> ModifyServiceAsync(Service service)
+        public async ValueTask<Service> ModifyServiceAsync(int washCompanyId, Service service)
         {
+            service.washCompanyId = washCompanyId;
             return await this.ServiceRepository.UpdateServiceAsync(service);
         }
 

@@ -6,7 +6,7 @@ using WashCarCrm.Domain;
 namespace WashCarCrm.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class ServiceController : RESTFulController
     {
         private readonly IServiceService serviceService;
@@ -14,12 +14,12 @@ namespace WashCarCrm.Api.Controllers
         {
             this.serviceService = serviceService;
         }
-        [HttpPost]
-        public async ValueTask<ActionResult<Service>> PostServiceAsync(Service Service)
+        [HttpPost("{washCompanyId}/insertService")]
+        public async ValueTask<ActionResult<Service>> PostServiceAsync(int washCompanyId, Service service)
         {
             try
             {
-                return await this.serviceService.AddServiceAsync(Service);
+                return await this.serviceService.AddServiceAsync(washCompanyId, service);
             }
             catch(Exception)
             {
@@ -55,12 +55,12 @@ namespace WashCarCrm.Api.Controllers
             }
         }
         
-        [HttpPut]
-        public async ValueTask<ActionResult<Service>> PutServiceAsync(Service Service)
+        [HttpPut("{washCompanyId}/updateService")]
+        public async ValueTask<ActionResult<Service>> PutServiceAsync(int washCompanyId,Service Service)
         {
             try
             {
-                Service modifiedService = await this.serviceService.ModifyServiceAsync(Service);
+                Service modifiedService = await this.serviceService.ModifyServiceAsync(washCompanyId, Service);
 
                 return Ok(modifiedService);
             }

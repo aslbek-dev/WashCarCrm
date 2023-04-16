@@ -6,7 +6,7 @@ using WashCarCrm.Domain;
 namespace WashCarCrm.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class WasherController : RESTFulController
     {
         private readonly IWasherService WasherService;
@@ -14,12 +14,12 @@ namespace WashCarCrm.Api.Controllers
         {
             this.WasherService = washerService;
         }
-        [HttpPost]
-        public async ValueTask<ActionResult<Washer>> PostWasherAsync(Washer Washer)
+        [HttpPost("{washCompanyId}/insertWasher")]
+        public async ValueTask<ActionResult<Washer>> PostWasherAsync(int washCompanyId, Washer Washer)
         {
             try
             {
-                return await this.WasherService.AddWasherAsync(Washer);
+                return await this.WasherService.AddWasherAsync(washCompanyId, Washer);
             }
             catch(Exception)
             {
@@ -27,7 +27,7 @@ namespace WashCarCrm.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("allWashers")]
         public ActionResult<IQueryable<Washer>> GetAllWashers()
         {
             try
@@ -42,7 +42,7 @@ namespace WashCarCrm.Api.Controllers
             }
         }
 
-        [HttpGet("{washerId}")]
+        [HttpGet("{washerId}/getById")]
         public async ValueTask<ActionResult<Washer>> GetWasherByIdAsync(int washerId)
         {
             try
@@ -55,12 +55,12 @@ namespace WashCarCrm.Api.Controllers
             }
         }
         
-        [HttpPut]
-        public async ValueTask<ActionResult<Washer>> PutWasherAsync(Washer Washer)
+        [HttpPut("{washCompanyId}/updateWasher")]
+        public async ValueTask<ActionResult<Washer>> PutWasherAsync(int washCompanyId, Washer Washer)
         {
             try
             {
-                Washer modifiedWasher = await this.WasherService.ModifyWasherAsync(Washer);
+                Washer modifiedWasher = await this.WasherService.ModifyWasherAsync(washCompanyId, Washer);
 
                 return Ok(modifiedWasher);
             }
