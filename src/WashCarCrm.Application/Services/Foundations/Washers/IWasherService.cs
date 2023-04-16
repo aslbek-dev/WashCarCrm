@@ -9,6 +9,7 @@ namespace WashCarCrm.Application.Foundations.Washers
     {
         ValueTask<Washer> AddWasherAsync(int washCompanyId, Washer Washer);
         IQueryable<Washer> RetrieveAllWashers();
+        IQueryable<Washer> GetWasherByName(string name);
         ValueTask<Washer> RetrieveWasherByIdAsync(int id);
         ValueTask<Washer> ModifyWasherAsync(int washCompanyId, Washer Washer);
         ValueTask<Washer> RemoveWasherByIdAsync(int id);

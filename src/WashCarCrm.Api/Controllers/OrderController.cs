@@ -37,7 +37,7 @@ namespace WashCarCrm.Api.Controllers
             return Ok(this.orderService.GetisActiveOrder(washCompanyId, page, isActive, dateFrom, dateTo));
         }
 
-        [HttpGet("allOrder")]
+        [HttpGet("allOrders")]
         public ActionResult<IQueryable<Order>> GetAllOrders()
         {
             try

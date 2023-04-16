@@ -40,5 +40,13 @@ namespace WashCarCrm.Application.Foundations.Washers
             Washer maybeWasher = await this.WasherRepository.SelectWasherByIdAsync(id);
             return await this.WasherRepository.DeleteWasherAsync(maybeWasher);
         }
+        public IQueryable<Washer> GetWasherByName(string name)
+        {
+            var allWashers = RetrieveAllWashers();
+            var resultWashers = allWashers
+                .Where(Washer => Washer.Name.ToLower().StartsWith(name));
+            
+            return resultWashers.AsQueryable();
+        }
     }
 }

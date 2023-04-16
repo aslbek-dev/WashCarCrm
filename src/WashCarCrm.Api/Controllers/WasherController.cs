@@ -26,6 +26,18 @@ namespace WashCarCrm.Api.Controllers
                 throw;
             }
         }
+        [HttpGet("{washCompanyId}/searchByName")]
+        public ActionResult<IQueryable<Washer>> GetWasherByName([FromQuery] string name,int washCompanyId)
+        {
+            try
+            {
+                return Ok(this.WasherService.GetWasherByName(name));
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
 
         [HttpGet("allWashers")]
         public ActionResult<IQueryable<Washer>> GetAllWashers()
