@@ -8,7 +8,7 @@ using WashCarCrm.Domain;
 
 namespace WashCarCrm.Application.Services.Orchestrations
 {
-    public class UserSecurityOrchestrationsService: IUserSecurityOrchestrationService
+    public partial class UserSecurityOrchestrationsService: IUserSecurityOrchestrationService
     {
         private readonly IUserService userService;
         private readonly ISecurityService securityService;
@@ -23,20 +23,34 @@ namespace WashCarCrm.Application.Services.Orchestrations
 
         public async ValueTask<User> CreateUserAccountAsync(User user)
         {
+
             User persistedUser = await this.userService.AddUserAsync(user);
             return persistedUser;
         }
 
         public UserToken CreateUserToken(string email, string password)
         {
-            User maybeUser = RetrieveUserByEmailAndPassword(email, password);
-            string token = this.securityService.CreateToken(maybeUser);
-
-            return new UserToken
+            try
             {
-                UserId = maybeUser.Id,
-                Token = token
-            };
+                ValidateEmailAndPassword(email, password);
+                User maybeUser = RetrieveUserByEmailAndPassword(email, password);
+                ValidateUserExists(maybeUser);
+                string token = this.securityService.CreateToken(maybeUser);
+
+                return new UserToken
+                {
+                    UserId = maybeUser.Id,
+                    Token = token
+                };
+            }
+            catch(InvalidUserCredentialOrchestrationsException invalidUserCreadentialOrchestrationException)
+            {
+                throw invalidUserCreadentialOrchestrationException;
+            }
+            catch(NotFoundUserException notFoundUserException)
+            {
+                throw notFoundUserException;
+            }
         }
         private User RetrieveUserByEmailAndPassword(string email, string password)
         {

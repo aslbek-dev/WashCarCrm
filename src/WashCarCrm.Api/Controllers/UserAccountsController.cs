@@ -41,9 +41,13 @@ namespace WashCarCrm.Api.Controllers
             {
                 return this.userSecurityOrchestrationService.CreateUserToken(email, password);
             }
-            catch(Exception)
+            catch(InvalidUserCredentialOrchestrationsException invalidUserCredentialOrchestrationsException)
             {
-                throw;
+                return BadRequest(invalidUserCredentialOrchestrationsException.Message);
+            }
+            catch(NotFoundUserException notFoundUserException)
+            {
+                return NotFound(notFoundUserException.Message);
             }
         }
     }
