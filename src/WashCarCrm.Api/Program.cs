@@ -20,14 +20,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(option=>
-option.UseInMemoryDatabase("AutoDb"));
+// builder.Services.AddDbContext<AppDbContext>(option=>
+// option.UseInMemoryDatabase("AutoDb"));
 
 // Sql serverni ishlatmoqchi bo'lsangiz pastdagi 2 ta qatorni commentdan chiqaring
 // va yuqoridagi 2 ta qatorni commentga oling
 
-// builder.Services.AddDbContext<AppDbContext>(option =>
-// option.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AppDbContext>(option =>
+option.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IWashCompanyRepository, WashCompanyRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

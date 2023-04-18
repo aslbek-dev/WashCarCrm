@@ -42,7 +42,7 @@ namespace WashCarCrm.Api.Controllers
             }
         }
 
-        [HttpGet("{serviceId}")]
+        [HttpGet("getServiceById/{serviceId}")]
         public async ValueTask<ActionResult<Service>> GetServiceByIdAsync(int serviceId)
         {
             try

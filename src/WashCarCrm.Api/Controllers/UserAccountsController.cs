@@ -35,7 +35,7 @@ namespace WashCarCrm.Api.Controllers
 
         }
         [HttpGet]
-        public ActionResult<UserToken> Login(string email, string password)
+        public ActionResult<UserToken> SignIn(string email, string password)
         {
             try
             {

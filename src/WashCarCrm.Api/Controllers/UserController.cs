@@ -6,7 +6,7 @@ using WashCarCrm.Domain;
 namespace WashCarCrm.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class UserController : RESTFulController
     {
         private readonly IUserService userService;
